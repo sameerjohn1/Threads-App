@@ -50,7 +50,7 @@ const UserHeader = () => {
       <Flex w={"full"}  justifyContent={"space-between"} >
         <Flex gap={2} alignItems={"center"} >
             <Text color={"gray.light"}>3.2K followers</Text>
-            <Box w="1" h="1" bg={"gray.light"} borderRadius={"full"}  ></Box>
+            <Box w="1" h="1" bg={"gray.light"} borderRadius={"full"}></Box>
             <Link color={"gray.light"}>instagram.com</Link>
         </Flex>
         <Flex>
@@ -70,6 +70,19 @@ const UserHeader = () => {
                 </Menu>
             </Box>
         </Flex>
+      </Flex>
+
+      <Flex w={"full"} >
+    <Flex flex={1} borderBottom={"1.5px solid white"}  justifyContent={"center"} pb="3"
+    cursor={"pointer"} >
+      <Text fontWeight={"bold"}> Threads</Text>
+    </Flex>
+
+     <Flex flex={1} borderBottom={"1px solid gray"} color={"gray.light"}  justifyContent={"center"} pb="3"
+    cursor={"pointer"} >
+      <Text fontWeight={"bold"}> Replies</Text>
+    </Flex>
+
       </Flex>
       
     </VStack>
