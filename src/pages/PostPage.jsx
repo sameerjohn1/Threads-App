@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { BsThreeDots } from "react-icons/bs";
 import Actions from "../components/Actions";
+import Comment from "../components/Comment";
 
 const PostPage = () => {
   const [liked, setLiked] = useState(false);
@@ -69,6 +70,28 @@ const PostPage = () => {
       </Flex>
 
       <Divider my={4} />
+
+      <Comment
+        comment="Amazing!"
+        createdAt="2d"
+        likes={100}
+        username="johndoe"
+        userAvatar="https://bit.ly/dan-abramov"
+      />
+      <Comment
+        comment="Looks really good!"
+        createdAt="1d"
+        likes={21}
+        username="janedoe"
+        userAvatar="https://bit.ly/code-beast"
+      />
+      <Comment
+        comment="Looks good!"
+        createdAt="2d"
+        likes={42}
+        username="sallydoe"
+        userAvatar="https://bit.ly/sage-adebayo"
+      />
     </>
   );
 };
