@@ -19,10 +19,10 @@ const HomePage = () => {
         console.log(data);
         setPosts(data);
 
-        // if (data.error) {
-        //   showToast("Error", data.error, "error");
-        //   return;
-        // }
+        if (data.error) {
+          showToast("Error", data.error, "error");
+          return;
+        }
       } catch (error) {
         showToast("Error", error.message, "error");
       } finally {
@@ -43,7 +43,7 @@ const HomePage = () => {
         </Flex>
       )}
 
-      {posts.map((post) => (
+      {posts?.map((post) => (
         <Post key={post._id} post={post} postedBy={post.postedBy} />
       ))}
     </>
