@@ -1,12 +1,13 @@
 import { Flex, Spinner } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import postsAtom from "../atoms/postsAtom";
 import Post from "../components/Post";
 import UserHeader from "../components/UserHeader";
 import useGetUserProfile from "../hooks/useGetUserProfile";
 import useShowToast from "../hooks/useShowToast";
+import ErrorPage from "./ErrorPage";
 
 const UserPage = () => {
   const { user, loading } = useGetUserProfile();
@@ -14,10 +15,12 @@ const UserPage = () => {
   const showToast = useShowToast();
   const [posts, setPosts] = useRecoilState(postsAtom);
   const [fetchingPosts, setFetchingPosts] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPosts = async () => {
       setFetchingPosts(true);
+      if (!user) return;
 
       try {
         const res = await fetch(`/api/posts/user/${username}`);
@@ -37,8 +40,8 @@ const UserPage = () => {
     };
 
     getPosts();
-  }, [username, showToast, setPosts]);
-  console.log("posts is here and it is recoil state", posts);
+  }, [username, showToast, setPosts, user]);
+  // console.log("posts is here and it is recoil state", posts);
 
   if (!user && loading) {
     return (
@@ -48,7 +51,9 @@ const UserPage = () => {
     );
   }
 
-  if (!user && !loading) return <h1>User not found</h1>;
+  if (!user && !loading) {
+    navigate("/error");
+  }
 
   return (
     <>
